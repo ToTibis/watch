@@ -1,0 +1,95 @@
+@import '../utilities/variables';
+@import '../utilities/mixins';
+
+.r-section {
+	padding-top: rem(68px);
+	padding-bottom: rem(72px);
+	.swiper {
+		&-slide {
+			@include transition(opacity);
+			opacity: .5;
+			&.swiper-slide-prev,
+			&.swiper-slide-active,
+			&.swiper-slide-next {
+				opacity: 1;
+			}
+		}
+	}
+
+	&__carousel {
+		user-select: none;
+		.swiper-wrapper {
+			order: 2;
+		}
+	}
+	&__slide {
+		.svg-icon {
+			max-height: rem(50px);
+			display: block;
+			margin: $spacer auto;
+			@include media-breakpoint-up(lg) {
+				max-width: 50%;
+			}
+			@include media-breakpoint-down(lg) {
+				max-width: 75%;
+			}
+		}
+		&:hover {
+			.r-section__image {
+				border-color: black;
+			}
+		}
+	}
+	&__image {
+		@include transition(border-color);
+		border: $border-width solid #D1D1D1;
+		@include media-breakpoint-up(lg) {
+			--page-aspect-ratio: 60%;
+		}
+		@include media-breakpoint-down(lg) {
+			--page-aspect-ratio: 97.5%;
+		}
+		img {
+			@include transition(opacity);
+			object-fit: contain;
+			object-position: center center;
+			opacity: 0;
+			max-height: 85%;
+			top: 7.5%;
+			&.swiper-lazy-loaded {
+				opacity: 1;
+			}
+		}
+	}
+	&__controls {
+		@include media-breakpoint-down(lg) {
+			position: absolute;
+			width: 100%;
+			left: 0;
+			top: 47.5%;
+			z-index: get($index, sm);
+			pointer-events: none;
+			& > .row {
+				width: auto;
+				justify-content: space-between;
+			}
+		}
+	}
+	&__control {
+		pointer-events: auto;
+		@include transition(color);
+		@include media-breakpoint-down(lg) {
+			width: rem(32px);
+			height: rem(22px);
+		}
+		@include media-breakpoint-up(lg) {
+			width: rem(28px);
+			height: rem(20px);
+		}
+		@include media-breakpoint-up(xl) {
+			&:hover {
+				color: get($colors, primary);
+			}
+		}
+	}
+}

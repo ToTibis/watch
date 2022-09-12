@@ -1,0 +1,57 @@
+@import 'base/root';
+@import 'base/reboot';
+
+@import 'components/typography';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/form/group';
+@import 'components/form/field';
+@import 'components/form/radio-and-checkbox';
+@import 'components/form/validation';
+@import 'components/lazy';
+@import 'components/modal';
+@import 'components/buttons';
+@import 'components/toast';
+@import 'components/dropdown';
+@import 'components/breadcrumbs';
+@import 'components/adv';
+@import 'components/menu';
+@import 'components/panels';
+@import 'components/react-carousel';
+
+@import 'pages/home/index';
+
+:root {
+	@include media-breakpoint-down(lg) {
+		--page-gutter-x: #{$container-padding-sm};
+	}
+}
+
+.page {
+	&__phone {
+		@include font-size(19px);
+		font-weight: 500;
+		.svg-icon {
+			@include transition(transform);
+			color: #00A1FF;
+		}
+		&:hover {
+			.svg-icon {
+				transform: scale(1.1);
+			}
+		}
+	}
+	&__background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		z-index: get($index, negative);
+		.lazy__image-element {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+

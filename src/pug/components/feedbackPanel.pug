@@ -1,0 +1,23 @@
+.page__panels.d-lg-none#js-page-panels
+
+	button(class='page__panel page__panels-to-up' type='button')#js-page-panels-to-up
+		+icon('to-up', '', '13px', '19px')
+
+	div(class='page__panel page__panels-feedback').d-flex.flex-column#js-page-panels-feedback
+		div(class='page__panels-feedback-control')
+			button(type='button' class='page__panels-feedback-control-button').d-flex#js-page-panels-feedback-toggle
+				+icon('message-cloud', 'message', '19px', '17px')
+				+icon('close', 'close', '13px', '13px')
+		ul(class='page__panels-feedback-options').mb-0.d-flex.flex-column
+			li
+				a(href='#').d-flex.page__panels-feedback-option
+					+icon('telegram')
+			li
+				a(href='#').d-flex.page__panels-feedback-option
+					+icon('whatsapp')
+			li
+				a(href='#').d-flex.page__panels-feedback-option
+					+icon('viber')
+			li
+				a(href='#').d-flex.page__panels-feedback-option
+					+icon('message')

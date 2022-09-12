@@ -1,0 +1,12 @@
+@import '../utilities/variables';
+@import '../utilities/mixins';
+
+a.page__adv {
+	@include transition(color);
+	@include media-breakpoint-down(lg) {
+		@include font-size(13px)
+	}
+	&:hover {
+		color: darken(white, 15%);
+	}
+}

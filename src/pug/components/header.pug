@@ -1,0 +1,75 @@
+a(href='#').bg-dark.text-white.d-block.page__adv
+	.container
+		p.text-center.py-3.mb-0.px-5.px-lg-0 Дополнительная выгода#{' '}
+			strong до 1300 руб и РОЗЫГРЫШ ЧАСОВ!
+
+header(class=['header', 'js-header'])
+
+	- cartCount = 99;
+
+	.container
+		.row.align-items-center.justify-content-between
+			.col-auto.d-lg-none
+				button(type='button' data-bs-toggle='offcanvas' data-bs-target="#js-offcanvas-menu").header__burger
+					+icon('burger', '', '20px', '14')
+			.col-auto
+				a(href='/').d-inline-block.header__logotype
+					img(src='img/logotype.svg' alt='Логотип компании "Watchtown"')
+			.col-auto.d-lg-none
+				a(href='#' class='header__cart').d-flex.align-items-center
+					span.header__cart-icon
+						+icon('cart', '', '23px', '20px')
+						span(class='header__cart-count' title=cartCount) #{cartCount}
+			.col-lg-4.col-xl-5
+				form(class='header__search')
+					label(for='headerSearch').d-block
+						input(class='header__search-field' type='search' id='headerSearch' placeholder='Поиск товара или бренда...' required)
+					button(class='header__search-button' type='submit')
+						+icon('search')
+			.col-auto.d-none.d-lg-block
+				+phone('+7 (985) 771 88 00')
+			.col-auto.d-none.d-lg-block
+				+button({
+					type: 'primary',
+					content: 'Перезвоните мне',
+					bsTarget: '#js-example-modal',
+					bsToggle: 'modal'
+				})
+	.container.d-none.d-lg-block
+		.row.pt-4.mt-1.pb-3.align-items-center
+			.col-auto
+				nav(class='header__nav')
+					each item in nav
+						if item.icon
+							a(href='#' class=['header__nav-link', item.isCurrent && 'text-danger is-current'])
+								span #{item.name}
+								+icon(item.icon, 'ms-1', '22px', '22px')
+						else
+							a(href='#' class=['header__nav-link', item.isCurrent && 'text-danger is-current']) #{item.name}
+			.col-auto.ms-auto
+				a(href='#' class='header__cabinet d-flex align-items-center')
+					+icon('user', '', '22px', '22px')
+					span.ms-2 Личный кабинет
+			.col-auto.me-auto.ms-auto
+				a(href='#' class='header__cart').d-flex.align-items-center
+					span.header__cart-icon
+						+icon('cart', '', '23px', '20px')
+						span(class='header__cart-count' title=cartCount) #{cartCount}
+					span.d-flex.flex-column
+						small.text-secondary.header__cart-name Корзина
+						span.text-primary.header__cart-total 22 000 руб.
+			.col-auto
+				ul.row.gx-3.mb-0
+					li.col-auto
+						a(href='#').d-flex
+							+icon('language-rus', '', '22px', '15px')
+					li.col-auto
+						a(href='#').d-flex
+							+icon('language-eng', '', '22px', '15px')
+					li.col-auto
+						a(href='#').d-flex
+							+icon('language-ch', '', '22px', '15px')
+a(href='#').bg-dark.text-white.page__adv.d-none.d-lg-block
+	.container
+		p.text-center.py-3.text-uppercase.mb-0
+			strong Скидки до 70% до конца января

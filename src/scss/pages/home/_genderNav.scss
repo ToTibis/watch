@@ -1,0 +1,40 @@
+@import '../../utilities/variables';
+@import '../../utilities/mixins';
+
+.home__genderNav {
+	$control-color: #606B6F;
+	$control-background: #D8E4E9;
+
+	transition-duration: #{$transition-duration}s;
+	transition-property: color, background-color;
+	font-weight: 500;
+	letter-spacing: -.01em;
+
+	background-color: $control-background;
+	color: $control-color;
+	@include media-breakpoint-up(hd) {
+		@include font-size(50px);
+	}
+	@include media-breakpoint-between(md, hd) {
+		@include font-size(35px);
+	}
+	@include media-breakpoint-down(md) {
+		@include font-size(22px);
+	}
+	@include media-breakpoint-up(md) {
+		padding-top: rem(38px);
+		padding-bottom: rem(43px);
+	}
+	@include media-breakpoint-down(md) {
+		padding-top: rem(16px);
+		padding-bottom: rem(16px);
+	}
+	@include media-breakpoint-down(sm) {
+		width: calc(100% + #{$container-padding-sm * 2});
+		margin-left: - $container-padding-sm;
+	}
+	&:hover {
+		background-color: darken($control-background, 5%);
+		color: darken($control-color, 10%);
+	}
+}

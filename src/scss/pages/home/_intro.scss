@@ -1,0 +1,101 @@
+@import '../../utilities/variables';
+@import '../../utilities/mixins';
+
+.home__intro {
+	& > .ratio {
+		@include media-breakpoint-up(hd) {
+			--#{$variable-prefix}aspect-ratio: 23.385%;
+		}
+		@include media-breakpoint-between(xl, hd) {
+			--#{$variable-prefix}aspect-ratio: 33.333%;
+		}
+		@include media-breakpoint-between(sm, xl) {
+			--#{$variable-prefix}aspect-ratio: 42.5%;
+		}
+		@include media-breakpoint-down(sm) {
+			--#{$variable-prefix}aspect-ratio: 53.5%;
+		}
+	}
+	&-carousel {
+		.swiper {
+			&-slide {
+				.home__intro-title, .button {
+					transition-duration: #{$transition-duration * 2}s;
+					transition-property: opacity, transform;
+					transition-delay: #{$transition-duration}s;
+					opacity: 0;
+					transform: translateX(- $spacer / 2);
+				}
+				&-active {
+					.home__intro-title, .button {
+						opacity: 1;
+						transform: translateX(0);
+					}
+				}
+			}
+			&-pagination {
+				text-align: left;
+				display: flex;
+				bottom: 1.75vw;
+				&-bullet {
+					width: rem(30px);
+					height: rem(30px);
+					border-radius: 0;
+					background-color: transparent;
+					position: relative;
+					opacity: 1;
+					&:after {
+						@include pseudo;
+						width: 100%;
+						height: get($border-widths, small);
+						left: 0;
+						top: 14px;
+						background-color: #585858;
+					}
+					&-active {
+						&:after {
+							background-color: get($colors, primary);
+						}
+					}
+				}
+			}
+		}
+	}
+	&-slide {
+		.swiper-lazy {
+			@include transition(opacity);
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			opacity: 0;
+			&-loaded {
+				opacity: 1;
+			}
+		}
+		&--dark {
+			color: black;
+		}
+		&--light {
+			color: white;
+		}
+	}
+	&-preloader {
+		@include center('both')
+	}
+	&-title {
+		font-weight: 400;
+		@include media-breakpoint-up(lg) {
+			@include font-size(51px);
+		}
+		@include media-breakpoint-down(lg) {
+			@include font-size(44px);
+		}
+	}
+	&-staticImage {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		max-width: 175px;
+	}
+}

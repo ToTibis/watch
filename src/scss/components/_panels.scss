@@ -1,0 +1,95 @@
+@import '../utilities/variables';
+@import '../utilities/mixins';
+
+$control-size: rem(25px);
+$options-count: 4;
+
+.page {
+	&__panel {
+		background-color: white;
+		border-radius: 8px 0 0 8px;
+		padding: $spacer;
+		box-shadow: 0 4px 9px rgba(black, .1);
+	}
+	&__panels {
+		text-align: right;
+		position: fixed;
+		right: 0;
+		bottom: 10%;
+		z-index: get($index, md);
+		&-feedback {
+			&-control {
+				color: get($colors, primary);
+				&-button {
+					width: $control-size;
+					height: $control-size;
+					position: relative;
+					.svg-icon {
+						@include center('both');
+						@include transition;
+						&.close {
+							opacity: 0;
+							visibility: hidden;
+						}
+						&.message {
+							.close {
+								opacity: 1;
+								visibility: visible;
+							}
+						}
+					}
+				}
+			}
+			&-options {
+				@include transition(height);
+				height: 0;
+				overflow: hidden;
+
+				& > li + li {
+					margin-top: $spacer;
+				}
+				.svg-icon {
+					width: $control-size;
+					height: $control-size;
+				}
+
+			}
+			&.is-active {
+				.page__panels-feedback {
+					&-control {
+						&-button {
+							.svg-icon {
+								&.close {
+									opacity: 1;
+									visibility: visible;
+								}
+								&.message {
+									opacity: 0;
+									visibility: hidden;
+								}
+							}
+						}
+					}
+					&-options {
+						margin-top: $spacer;
+						height: $control-size * $options-count + ($spacer * ($options-count - 1));
+					}
+				}
+			}
+		}
+		&-to-up {
+			transition-duration: #{$transition-duration}s;
+			transition-property: opacity, transform, visibility;
+			margin-bottom: 13px;
+			color: get($colors, primary);
+			opacity: 0;
+			transform: translateX(100%);
+			visibility: hidden;
+			&.is-active {
+				opacity: 1;
+				transform: translateX(0);
+				visibility: visible;
+			}
+		}
+	}
+}

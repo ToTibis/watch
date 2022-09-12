@@ -1,0 +1,284 @@
+
+-
+	advs = [
+		{
+			title: 'Бесплатная доставка любого товара по РФ',
+			icon: {
+				name: 'delivery',
+				width: '45px',
+				height: '45px'
+			}
+		},
+		{
+			title: '30 дней на возврат и обмен',
+			icon: {
+				name: 'return',
+				width: '42px',
+				height: '42px'
+			}
+		},
+		{
+			title: 'Высокий уровень сервиса',
+			icon: {
+				name: 'service',
+				width: '35px',
+				height: '40px'
+			}
+		}
+	];
+
+-
+	navs = [
+		{
+			col: 'col-lg-3 col-xl-4',
+			title: 'Информация',
+			items: [
+				'Как купить',
+				'Доставка и оплата',
+				'Возврат и обмен',
+				'О компании',
+				'Гарантия',
+				'Гарантия лучшей цены',
+				'Контакты',
+				'Новости',
+				'Отзывы',
+				'Карта сайта',
+				'Официальная информация',
+				'Политика',
+				'Оптовым клиентам'
+			]
+		},
+		{
+			col: 'col ms-xl-5',
+			title: 'Разделы сайта',
+			items: [
+				'Fashion часы',
+				'Мужские часы',
+				'Женские часы',
+				'Электронные часы',
+				'Керамические часы',
+				'Подарочная карта',
+				'Корпоративные подарки',
+				'Дарим до 1300 руб. и ЧАСЫ!',
+				'Остерегайтесь мошенников'
+			]
+		},
+		{
+			col: 'col',
+			title: 'Интересно почитать',
+			items: [
+				'Водозащита часов',
+				'Запотевание стекла',
+				'Как определить размер часов',
+				'Обзоры и описания часов'
+			]
+		}
+	];
+
+- socials = ['social-youtube', 'social-instagram', 'social-vk', 'social-facebook'];
+
+-
+	payments = [
+		{
+			name: 'payment-visa',
+			width: '46',
+			height: '15'
+		},
+		{
+			name: 'payment-mastercard',
+			width: '40',
+			height: '24'
+		},
+		{
+			name: 'payment-apple',
+			width: '36',
+			height: '17'
+		},
+		{
+			name: 'payment-google',
+			width: '37',
+			height: '15'
+		},
+		{
+			name: 'payment-samsung',
+			width: '37',
+			height: '17'
+		},
+		{
+			name: 'payment-yandex',
+			width: '16',
+			height: '21'
+		}
+	]
+
+include ../components/feedbackPanel
+
+footer(class=['footer', 'js-footer'])
+	.footer__info.text-center.text-lg-start
+		.container
+			h2.footer__info-title WATCHTOWN
+			p.footer__info-subtitle.text-uppercase.py-2 Магазин наручных часов в Москве
+			p
+				small Наручные часы – это оригинальные брендовые аксессуары, которые можно купить в нашем магазине на выгодных условиях с возможностью доставки, подбора способа оплаты, обмена и возврата. У нас представлен самый большой в России выбор часов Michael Kors, Armani, Burberry, Daniel Wellington, Marc Jacobs и других популярных брендов. Купите их выгодно на нашей#{' '}
+					a(href='#').text-decoration-underline.text-primary распродаже
+					| !
+	.bg-dark.text-white.d-none.d-lg-block.py-4
+		.container
+			.row.justify-content-between
+				each adv in advs
+					.col-auto
+						.d-flex.align-items-center
+							+icon(adv.icon.name, 'me-4', adv.icon.width, adv.icon.height)
+							p
+								small #{adv.title}
+
+	.container-fluid
+		.footer__main.mx-auto
+
+			- accordionId = 'js-footer-accordion';
+
+			div(class=['footer__accordion'] id=accordionId).accordion
+				.row.flex-column.flex-lg-row
+					each nav,index in navs
+
+						- isSiteSectionsNav = nav.title === 'Разделы сайта';
+
+						div(class=[nav.col])
+							section(class=['footer__section', isSiteSectionsNav && 'ps-lg-4'])
+
+								- id = `${accordionId}-content-${index}`;
+
+								h3(
+									class='footer__title footer__accordion-button'
+									data-bs-toggle='collapse'
+									data-bs-target=`#${id}`
+									aria-expanded='false'
+									aria-controls=id
+								).d-flex.justify-content-between
+									span #{nav.title}
+									+icon('plus', 'd-lg-none', '14px', '14px')
+								div(id=id data-bs-parent=`#${accordionId}` class='footer__accordion-content').collapse
+									ul.footer__list.d-flex.flex-column.flex-wrap
+										each link in nav.items
+											li
+												a(href='#').footer__link.py-1.py-lg-2.d-inline-block #{link}
+					.col-auto.d-none.d-lg-block
+						section.footer__section.footer__section--contacts.d-flex.flex-column.align-items-start
+							h3.footer__title Связаться с нами
+							.pb-2.d-flex.flex-column.align-items-start
+								+phone('+7 (985) 771 88 00', 'my-2')
+								+phone('+7 (985) 771 88 00', 'my-2')
+							a(href='#').my-2.d-inline-flex.align-items-end
+								+icon('whatsapp')
+								span.ms-2 WhatsApp
+							a(href='#').my-2.d-inline-flex.align-items-end
+								+icon('telegram')
+								span.ms-2 Telegram
+							a(href='#').my-2.d-inline-flex.align-items-end
+								+icon('viber')
+								span.ms-2 Viber
+							div(class='mt-4 pt-2')
+								+button({
+									type: 'secondary',
+									content: 'Задать вопрос',
+									bsTarget: '#js-example-modal',
+									bsToggle: 'modal'
+								})
+
+	hr
+
+	.container
+		.row.py-sm-5.align-items-center
+			.col-lg-5.order-lg-1.order-2
+				.footer__social
+					.row.align-items-center.text-center.text-lg-start
+						.col-lg-auto
+							p.mb-0.footer__title.pe-lg-3 Мы в сети
+						.col-lg-auto
+							ul.mb-0.row.d-inline-flex
+								each icon in socials
+									li.col-auto
+										a(href='#' target='_blank').d-inline-block.footer__social-link
+											+icon(icon, '', '40px', '40px')
+
+			.col-lg-7.order-lg-2.order-1.mb-sm-5.mb-lg-0
+				.footer__payment
+					.row.align-items-center.text-center.text-lg-start
+						.col-lg-auto
+							p.mb-0.footer__title.pe-lg-3 Мы принимаем к оплате
+						.col-lg-auto
+							ul.mb-0.row.d-inline-flex.g-2.gx-sm-3.justify-content-center
+								each icon in payments
+									li.col-auto
+										a(href='#' target='_blank').d-inline-block.footer__payment-link.text-center
+											+icon(icon.name, (icon.name === 'payment-yandex' && 'mt-n2'), icon.width, icon.height)
+		.d-lg-none
+			section.footer__section.d-flex.flex-column.align-items-center.pt-4.mt-3
+				h3.footer__title.pb-3 Связаться с нами
+				+phone('+7 (985) 771 88 00')
+			.footer__messagers.pt-4.mt-2
+				ul.mb-0.row.justify-content-center.gx-2.gy-3
+					.col-auto
+						a(href='#').d-flex.align-items-center
+							+icon('telegram', 'me-2')
+							span Telegram
+					.col-auto.mx-3
+						a(href='#').d-flex.align-items-center
+							+icon('whatsapp', 'me-2')
+							span WhatsApp
+					.col-auto
+						a(href='#').d-flex.align-items-center
+							+icon('viber', 'me-2')
+							span Viber
+			.footer__buttons.pt-4.mt-2.pb-5
+				.row.g-3
+					.col-6
+						+button({
+							type: 'primary',
+							content: 'Заказать звонок',
+							bsTarget: '#js-example-modal',
+							bsToggle: 'modal',
+							classes: 'w-100 h-100'
+						})
+					.col-6
+						+button({
+							type: 'secondary',
+							content: 'Задать вопрос',
+							bsTarget: '#js-example-modal',
+							bsToggle: 'modal',
+							classes: 'w-100 h-100'
+						})
+	.bg-light.py-4.footer__rates
+		.container.mt-md-3
+			.row
+				.col-lg-5
+					.row.justify-content-center.justify-content-md-start
+						.col-auto.me-5
+							.footer__rate
+								+icon('yandex-market', 'mb-1', '98px', '22px')
+								.row.gx-2.flex-nowrap.align-items-center
+									each _ in Array(5)
+										.col-auto
+											.d-flex
+												+icon('star', '', '14px', '14px')
+									.col-auto
+										small 4.8
+						.col-auto
+							.footer__rate
+								+icon('google', 'mb-1', '67px', '22px')
+								.row.gx-2.flex-nowrap.align-items-center
+									each _ in Array(5)
+										.col-auto
+											.d-flex
+												+icon('star', '', '14px', '14px')
+									.col-auto
+										small 4.8
+					hr.mt-4.d-sm-none
+				.col-lg-7.mt-4.mt-lg-0
+					.footer__address.text-center.text-md-start
+						.row.align-items-end
+							.col-md-auto.order-md-1.order-2
+								address.pe-2 !{'ООО «КУПИКОМ», ОГРН 1197746670989 <br> 115035, г. Москва, ул. Садовническая, д. 72, стр 1, эт. 1, пом. III'}
+							.col-md-5
+								p.mb-3.mb-md-0.order-md-2.order-1
+									small !{'© 2011-2020 WatchTown.ru <br> Магазин оригинальных наручных часов'}

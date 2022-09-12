@@ -1,0 +1,108 @@
+
+div(
+	class=[
+		'offcanvas',
+		'offcanvas-start',
+		'page__menu',
+	]
+	id='js-offcanvas-menu'
+	aria-hidden='true'
+	data-bs-backdrop='true'
+)
+	a(href='#').bg-dark.text-white.d-block.page__adv
+		.container
+			p.text-center.py-3.mb-0.px-5.px-lg-0 Дополнительная выгода#{' '}
+				strong до 1300 руб и РОЗЫГРЫШ ЧАСОВ!
+	.offcanvas-header
+		button(type='button' data-bs-dismiss='offcanvas' aria-label='Close').header__burger
+			+icon('close', '', '20px', '14')
+
+		a(href='/').d-inline-block.header__logotype
+			img(src='img/logotype.svg' alt='Логотип компании "Watchtown"')
+
+		a(href='#' class='header__cart').d-flex.align-items-center
+			span.header__cart-icon
+				+icon('cart', '', '23px', '20px')
+				span(class='header__cart-count' title=cartCount) #{cartCount}
+	.offcanvas-body
+
+		- accordionId = 'js-menu-accordion';
+
+		div(class=['page__menu-nav', 'page__menu-accordion', 'accordion'] id=accordionId).d-flex.flex-column
+			each item, index in nav
+				.page__menu-nav-item
+
+					- isAccordion = Array.isArray(item.submenu) && item.submenu.length > 0;
+					- tag = isAccordion ? 'button' : 'a';
+					- id = `${accordionId}-content-${index}`;
+					- href = isAccordion ? null : '#';
+					- type = isAccordion ? 'button' : null;
+
+					#{tag}(
+						href=href
+						type=type
+						class=[
+							'page__menu-nav-link',
+							isAccordion && 'page__menu-accordion-button',
+							item.isCurrent && 'text-danger is-current'
+						]
+
+						data-bs-toggle=(isAccordion && 'collapse')
+						data-bs-target=(isAccordion && `#${id}`)
+						aria-expanded=(isAccordion && 'false')
+						aria-controls=(isAccordion && id)
+					)
+						if item.icon
+							span #{item.name}
+							+icon(item.icon, 'ms-1', '22px', '22px')
+						else
+							| #{item.name}
+
+
+					if isAccordion
+						div(id=id data-bs-parent=`#${accordionId}`).collapse
+							div(class='page__menu-accordion-content')
+								ul.mb-0
+									each subItem in item.submenu
+										li.page__menu-accordion-content-item
+											a(href='#' class=['page__menu-accordion-link', subItem.isAccent && 'is-accent']) #{subItem.name}
+		a(href='#' class=['header__cabinet', 'page__menu-cabinet']).d-flex.align-items-center
+			+icon('user', '', '22px', '22px')
+			span.ms-2 Личный кабинет
+		.page__menu-languages
+			ul.row.gx-4.mb-0
+				li.col-auto
+					a(href='#').d-flex
+						+icon('language-rus', '', '22px', '15px')
+				li.col-auto
+					a(href='#').d-flex
+						+icon('language-eng', '', '22px', '15px')
+				li.col-auto
+					a(href='#').d-flex
+						+icon('language-ch', '', '22px', '15px')
+		form(class=['page__menu-search', 'position-relative'])
+			label(for='menuSearch').d-block
+				input(class='header__search-field' type='search' id='menuSearch' placeholder='Поиск товара или бренда...' required)
+			button(class='header__search-button' type='submit')
+				+icon('search')
+		section(class=['page__menu-catalog', 'position-relative'])
+			+lazyImage({
+				imageSrc: 'img/dark-bg',
+				type: 'background',
+				classes: 'page__background'
+			})
+			+lazyImage({
+				imageSrc: 'img/menu-product',
+				type: 'img',
+				classes: 'page__menu-catalog-image'
+			})
+			.row
+				.col-9
+					h3.page__menu-catalog-title.text-white Самый большой выбор	брендовых часов
+					+button({
+						link: true,
+						type: 'primary',
+						content: 'Перейти в каталог',
+						classes: 'mt-3'
+					})
+

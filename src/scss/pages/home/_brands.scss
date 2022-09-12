@@ -1,0 +1,158 @@
+@import '../../utilities/variables';
+@import '../../utilities/mixins';
+
+.home__brand {
+	display: block;
+	overflow: hidden;
+	position: relative;
+	@include media-breakpoint-down(sm) {
+		width: calc(100% + #{$container-padding-sm * 2});
+		margin-left: - $container-padding-sm;
+	}
+	&-image {
+		height: 100%;
+	}
+	&-icon {
+		position: absolute;
+		max-width: 75%;
+	}
+	&-col {
+		@include media-breakpoint-up(md) {
+			&--large {
+				flex: 0 0 42.5%;
+			}
+			&--middle {
+				flex: 0 0 31%;
+			}
+			&--small {
+				flex: 0 0 26.5%;
+			}
+		}
+	}
+	img {
+		transition-property: opacity, transform;
+		transition-duration: #{$transition-duration * 2}s,  #{$transition-duration * 6}s;
+		transition-timing-function: linear, ease-in-out;
+		@include center('both');
+		min-height: 100%;
+		min-width: 100%;
+		object-fit: cover;
+		will-change: transform;
+	}
+	&--low, &--hight {
+		@include media-breakpoint-between(sm, lg) {
+			height: rem(250px);
+		}
+		@include media-breakpoint-down(sm) {
+			height: rem(180px);
+		}
+	}
+	&--low {
+		@include media-breakpoint-up(lg) {
+			height: rem(328px);
+		}
+	}
+	&--hight {
+		@include media-breakpoint-up(lg) {
+			height: rem(475px);
+		}
+	}
+	&--kors {
+		.home__brand-icon {
+			right: 5%;
+			bottom: 10%;
+			@include media-breakpoint-up(xl) {
+				width: 167px;
+				height: 110px;
+			}
+			@include media-breakpoint-down(xl) {
+				width: 93px;
+				height: 60px;
+			}
+		}
+	}
+	&--burberry {
+		.home__brand-icon {
+			left: 5%;
+			bottom: 15%;
+			@include media-breakpoint-up(xl) {
+				width: 350px;
+				height: 26px;
+			}
+			@include media-breakpoint-down(xl) {
+				width: 264px;
+				height: 20px;
+			}
+		}
+	}
+	&--skagen {
+		.home__brand-icon {
+			left: 3%;
+			bottom: 20%;
+		}
+	}
+	&--wellington {
+		.home__brand-icon {
+			top: 10%;
+			left: 42.5%;
+			@include media-breakpoint-up(xl) {
+				width: 278px;
+				height: 113px;
+			}
+			@include media-breakpoint-down(xl) {
+				width: 124px;
+				height: 50px;
+			}
+		}
+	}
+	&--armani {
+		.home__brand-icon {
+			@include center('horizontal');
+			width: 50%;
+			height: rem(50px);
+			bottom: 10%;
+		}
+	}
+	&--jacobs {
+		.home__brand-icon {
+			@include center('vertical');
+			left: 30%;
+			@include media-breakpoint-up(xl) {
+				width: 214px;
+				height: 94px;
+			}
+			@include media-breakpoint-down(xl) {
+				width: 130px;
+				height: 57px;
+			}
+		}
+	}
+	&--citizen {
+		.home__brand-icon {
+			bottom: 7%;
+			left: 5%;
+			width: 170px;
+			height: 32px;
+		}
+	}
+	&--casio {
+		.home__brand-icon {
+			bottom: 20%;
+			left: 15%;
+
+			@include media-breakpoint-up(xl) {
+				width: 207px;
+				height: 39px;
+			}
+			@include media-breakpoint-down(xl) {
+				width: 150px;
+				height: 29px;
+			}
+		}
+	}
+	&:hover {
+		img {
+			transform: scale(1.025) translate(-50%, -50%);
+		}
+	}
+}

@@ -1,0 +1,73 @@
+
+.home__brands
+	.container-fluid
+		.pt-3.pt-md-2
+			.row.g-2
+				.col-md-6
+					a(href='#').text-center.d-block.home__genderNav Мужские модели
+				.col-md-6
+					a(href='#').text-center.d-block.home__genderNav.mb-3.mb-md-0 Женские модели
+				.home__brand-col--large.d-none.d-md-block
+					a(href='#' target='_blank' class=['home__brand', 'home__brand--low', 'home__brand--kors'])
+						+lazyImage({
+							imageSrc: 'img/home/brands/michael-kors',
+							type: 'img',
+							classes: 'home__brand-image'
+						})
+						+icon('brand-michael-kors', 'home__brand-icon')
+				.home__brand-col--small.d-none.d-md-block
+					a(href='#' target='_blank' class=['home__brand', 'home__brand--low', 'home__brand--burberry'])
+						+lazyImage({
+							imageSrc: 'img/home/brands/burberry',
+							type: 'img',
+							classes: 'home__brand-image'
+						})
+						+icon('brand-burberry', 'home__brand-icon')
+				.home__brand-col--middle
+					a(href='#' target='_blank' class=['home__brand', 'home__brand--low', 'home__brand--skagen'])
+						+lazyImage({
+							imageSrc: 'img/home/brands/skagen',
+							type: 'img',
+							classes: 'home__brand-image'
+						})
+						+icon('brand-skagen', 'home__brand-icon', '150px', '40px')
+				.col-md-6
+					a(href='#' target='_blank' class=['home__brand', 'home__brand--hight', 'home__brand--wellington'])
+						+lazyImage({
+							imageSrc: 'img/home/brands/daniel-wellington',
+							type: 'img',
+							classes: 'home__brand-image'
+						})
+						+icon('brand-daniel-wellington', 'home__brand-icon')
+				.col-md-6
+					a(href='#' target='_blank' class=['home__brand', 'home__brand--hight', 'home__brand--armani'])
+						+lazyImage({
+							imageSrc: 'img/home/brands/emporio-armani',
+							type: 'img',
+							classes: 'home__brand-image'
+						})
+						+icon('brand-emporio-armani', 'home__brand-icon')
+				.home__brand-col--large
+					a(href='#' target='_blank' class=['home__brand', 'home__brand--low', 'home__brand--jacobs'])
+						+lazyImage({
+							imageSrc: 'img/home/brands/marc-jacobs',
+							type: 'img',
+							classes: 'home__brand-image'
+						})
+						+icon('brand-marc-jacobs', 'home__brand-icon')
+				.home__brand-col--small
+					a(href='#' target='_blank' class=['home__brand', 'home__brand--low', 'home__brand--citizen'])
+						+lazyImage({
+							imageSrc: 'img/home/brands/citizen',
+							type: 'img',
+							classes: 'home__brand-image'
+						})
+						+icon('brand-citizen', 'home__brand-icon')
+				.home__brand-col--middle.d-none.d-md-block
+					a(href='#' target='_blank' class=['home__brand', 'home__brand--low', 'home__brand--casio'])
+						+lazyImage({
+							imageSrc: 'img/home/brands/casio',
+							type: 'img',
+							classes: 'home__brand-image'
+						})
+						+icon('brand-casio', 'home__brand-icon')

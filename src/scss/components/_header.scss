@@ -1,0 +1,163 @@
+@import '../utilities/variables';
+@import '../utilities/mixins';
+
+.header {
+	$header-search-mobile-height: rem(40px);
+	$header-search-mobile-y-offset: rem(13px);
+
+	@include media-breakpoint-down(lg) {
+		padding-top: rem(10px);
+		padding-bottom: rem(10px);
+		position: relative;
+		&:after {
+			@include pseudo;
+			width: 100%;
+			bottom: $header-search-mobile-height + rem(10px) * 2;
+			left: 0;
+			right: 0;
+			height: $border-width;
+			background-color: rgba(black, .1);
+		}
+	}
+	@include media-breakpoint-up(lg) {
+		padding-top: 12px;
+	}
+	&__logotype {
+		@include media-breakpoint-down(lg) {
+			max-width: 140px;
+		}
+	}
+	&__search {
+		$icon-size: rem(20px);
+		$padding-x: rem(18px);
+		$button-color: #BABABA;
+		$border-color: #BEBEBE;
+
+		position: relative;
+		@include media-breakpoint-down(lg) {
+			margin-top: $header-search-mobile-y-offset * 1.78;
+		}
+		&-field {
+			@include transition(border-color);
+			border: $border-width solid $border-color;
+			width: 100%;
+			padding: rem(8px) $padding-x;
+			@include media-breakpoint-down(lg) {
+				height: $header-search-mobile-height;
+			}
+			@include placeholder {
+				transition-duration: #{$transition-duration}s;
+				transition-property: transform, opacity;
+				font-family: 'Helvetica Neue', sans-serif;
+				@include font-size($font-size-sm);
+				transform: translateX(0);
+				opacity: 1;
+			}
+			&:focus {
+				border-color: darken($border-color, 15%);
+				@include placeholder {
+					transform: translateX($spacer / 2);
+					opacity: 0;
+				}
+			}
+		}
+		&-button {
+			@include transition(color);
+			height: 100%;
+			width: #{$icon-size + $padding-x * 2};
+			color: $button-color;
+			position: absolute;
+			right: 0;
+			top: 0;
+			.svg-icon {
+				width: $icon-size;
+				height: $icon-size;
+				stroke-width: .5;
+				stroke: currentColor;
+			}
+			&:hover {
+				color: darken($button-color, 10%);
+			}
+		}
+	}
+	&__nav {
+		font-weight: 500;
+		&-link {
+			@include transition(color);
+			@include media-breakpoint-between(md, xl) {
+				@include font-size(14px)
+			}
+			& + .header__nav-link {
+
+				@include media-breakpoint-up(xl) {
+					margin-left: rem(22px);
+				}
+				@include media-breakpoint-between(md, xl) {
+					margin-left: rem(14px);
+				}
+			}
+			&:not(.is-current):hover {
+				color: get($colors, primary);
+			}
+			&.is-current {
+				cursor: default;
+				&:hover {
+					color: get($colors, danger);
+				}
+			}
+		}
+	}
+	&__cabinet {
+		@include transition(color);
+		font-weight: 500;
+		color: get($colors, primary);
+		@include media-breakpoint-between(md, xl) {
+			@include font-size(14px)
+		}
+		&:hover {
+			color: darken(get($colors, primary), 10%);
+		}
+	}
+	&__cart {
+		font-weight: 500;
+		&-icon {
+			position: relative;
+			display: block;
+			padding-right: 13px;
+			@include media-breakpoint-up(lg) {
+				margin-right: 8px;
+			}
+		}
+		&-count {
+			height: 18px;
+			width: 18px;
+			padding: 3px 2px 2px;
+			background-color: get($colors, primary);
+			color: white;
+			display: block;
+			position: absolute;
+			right: 0;
+			bottom: -5px;
+			border-radius: 50%;
+			text-align: center;
+			font-size: 11px;
+			font-weight: 700;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		&-name {
+			font-size: 12px;
+		}
+		&-total {
+			line-height: $line-height-sm;
+			width: 92px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	}
+	&__burger {
+		color: get($colors, primary);
+	}
+}

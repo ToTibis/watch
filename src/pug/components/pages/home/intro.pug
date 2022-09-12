@@ -1,0 +1,77 @@
+
+-
+	introSlides = [
+		{
+			title: 'Самый большой выбор брендовых часов',
+			button: true,
+			imageSrc: 'img/home/intro/second.webp',
+			theme: 'light'
+		},
+		{
+			title: 'Короткий заголовок',
+			button: true,
+			imageSrc: 'img/home/intro/third.webp',
+			theme: 'dark'
+		},
+		{
+			title: 'Заголовок слайда не содержащего кнопку',
+			button: true,
+			imageSrc: 'img/home/intro/fourth.webp',
+			theme: 'light'
+		},
+		{
+			imageSrc: 'img/home/intro/first.webp'
+		},
+	];
+
+section(class='home__intro')
+	.ratio
+		.d-sm-none.overflow-hidden
+			+lazyImage({
+				imageSrc: 'img/dark-bg',
+				type: 'background',
+				classes: 'page__background'
+			})
+			+lazyImage({
+				imageSrc: 'img/menu-product',
+				type: 'img',
+				classes: 'home__intro-staticImage'
+			})
+			.container.h-100.position-relative
+				.row.h-100.align-items-center
+					.col-9
+						h3.page__menu-catalog-title.text-white Самый большой выбор брендовых часов
+						+button({
+							link: true,
+							type: 'primary',
+							content: 'Перейти в каталог',
+							classes: 'mt-3'
+						})
+		.home__intro-carousel#js-home-intro-carousel.d-none.d-sm-block
+			.swiper.h-100
+				.swiper-wrapper
+					each slide, i in introSlides
+						.swiper-slide.h-100
+							#{slide.title ? 'div' : 'a'}(href=(slide.title ? null : '#') class=['home__intro-slide', (slide.theme && `home__intro-slide--${slide.theme}`), 'h-100'])
+								div(
+									data-background=slide.imageSrc class='swiper-lazy'
+									style=(!slide.title ? 'background-position: left center' : null)
+								).h-100
+									.container.h-100
+										.row.h-100.align-items-center
+											.col-md-8.col-lg-6
+												#{i === 0 ? 'h1' : 'h2'}(class=['home__intro-title', slide.button && 'pb-lg-3']) #{slide.title}
+												if slide.button
+													+button({
+														link: true,
+														type: 'primary',
+														content: 'Перейти в каталог',
+														classes: 'mt-4 mt-xl-5'
+													})
+
+								.home__intro-preloader.js-carousel-preloader
+									div(class='spinner-grow text-primary')
+			.container
+				.position-relative
+					.swiper-pagination
+

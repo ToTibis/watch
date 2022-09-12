@@ -1,0 +1,7 @@
+@import 'mixins';
+
+@include font-face('Gilroy', '../font/Gilroy/GilroyRegular')
+@include font-face('Gilroy', '../font/Gilroy/GilroyMedium', $weight: 500)
+@include font-face('Gilroy', '../font/Gilroy/GilroyBold', $weight: 700)
+
+@include font-face('Helvetica Neue', '../font/HelveticaNeue/HelveticaNeue', $style: italic)

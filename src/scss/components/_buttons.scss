@@ -1,0 +1,33 @@
+@import '../utilities/variables';
+
+.button {
+	transition-duration: #{$transition-duration}s;
+	transition-property: background-color, color;
+	display: inline-block;
+	@include font-size(15px);
+	font-weight: 700;
+	border: $border-width solid get($colors, primary);
+	letter-spacing: -0.02em;
+	@include media-breakpoint-up(lg) {
+		padding: rem(14px) rem(18px);
+	}
+	@include media-breakpoint-down(lg) {
+		padding: rem(10px) rem(14px);
+	}
+	&--primary {
+		background-color: get($colors, primary);
+		color: white;
+		&:not(:disabled):hover {
+			background-color: darken(get($colors, primary), 5%);
+		}
+	}
+	&--secondary {
+		color: get($colors, primary);
+		&:not(:disabled):hover {
+			background-color: get($colors, primary);
+		}
+	}
+	&:not(:disabled):hover {
+		color: white;
+	}
+}

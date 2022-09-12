@@ -1,0 +1,74 @@
+block mainVariables
+
+doctype html
+html(lang='ru')
+	head
+		meta(charset='UTF-8')
+		meta(http-equiv='x-ua-compatible' content="ie=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		meta(name="description" content="Description of the page less than 150 characters")
+		title #{pageTitle}
+		link(rel="stylesheet" href="css/libs.css")
+		link(rel="stylesheet" href="css/common.css")
+	body
+		-
+			nav = [
+				{
+					name: 'Распродажа',
+					isCurrent: true,
+					icon: 'label'
+				},
+				{
+					name: 'Бренды',
+					submenu: [
+						{name: 'Первый бренд'},
+						{name: 'Второй бренд'}
+					]
+				},
+				{
+					name: 'Мужские часы',
+					submenu: [
+						{name: 'Бред'},
+						{name: 'Стиль'},
+						{name: 'Материал'},
+						{name: 'Цена'},
+						{name: 'Посмотреть все мужские часы', isAccent: true},
+						{name: 'Посмотреть все женские часы', isAccent: true},
+					]
+				},
+				{
+					name: 'Женские часы'
+				},
+				{
+					name: 'Связаться с нами'
+				}
+			]
+
+		include ../mixins/icon
+		include ../mixins/breadcrumbs
+		include ../mixins/title
+		include ../mixins/button
+		include ../mixins/field
+		include ../mixins/lazyImage
+		include ../mixins/phone
+
+		div(
+			class=[
+				'page',
+				pageRootClass && `page--${pageRootClass}`
+			]
+			id=pageId || 'js-page-regular'
+			data-sprite-path='img/'
+		)
+			div(class='page__wrapper' id='js-page-wrapper')
+				div(class='page__content')
+					include ../components/header
+					main
+						block mainContent
+				include ../components/footer
+		include ../components/modal/example
+		include ../components/menu
+
+		script(src='js/vendors.js')
+		script(src='js/main.js')
+		script(src='js/reactCarousel.js')
