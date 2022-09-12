@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React from 'react';
 import Icon from './icon';
 import {useSwiper} from 'swiper/react';
 

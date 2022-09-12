@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Swiper, SwiperSlide, useSwiper} from 'swiper/react';
-import {Lazy, default as SwiperCore, Navigation} from 'swiper';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import {Lazy, default as SwiperCore} from 'swiper';
 import CarouselSlide from './slide';
 import CarouselControls from './controls';
 import variables from '../variables';
